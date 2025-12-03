@@ -28,8 +28,11 @@ const Contact = () => {
     setLoading(true);
     setStatus({ type: '', message: '' });
 
+    // Use environment variable or default to localhost
+    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
     try {
-      await axios.post('http://localhost:5000/api/contact', formData);
+      await axios.post(`${API_URL}/api/contact`, formData);
       setStatus({
         type: 'success',
         message: 'Thank you! Your message has been sent successfully. We will contact you soon.',

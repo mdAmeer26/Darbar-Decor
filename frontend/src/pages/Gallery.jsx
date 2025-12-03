@@ -43,8 +43,11 @@ const Gallery = () => {
   }, []);
 
   const fetchGallery = async () => {
+    // Use environment variable or default to localhost
+    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
     try {
-      const response = await axios.get('http://localhost:5000/api/gallery');
+      const response = await axios.get(`${API_URL}/api/gallery`);
       setGalleryItems(response.data.length > 0 ? response.data : fallbackGallery);
     } catch (error) {
       console.log('Using fallback gallery data');
